@@ -26,7 +26,7 @@ def get_parser():
     parser = argparse.ArgumentParser(description='doNovosoft PAAS build')
     parser.add_argument('-n', '--name', help='Name of the application', required=True)
     parser.add_argument('-r', '--repo', help='Repository end point', required=True)
-    parser.add_argument('-u', '--user', help='Username for registry', required=True)
+    parser.add_argument('-u', '--user', help='Username for registry', required=False)
     parser.add_argument('-p', '--password', help='Password for registry', required=False)
     return parser
 

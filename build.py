@@ -14,8 +14,8 @@ class Deployer(object):
     		self.app_version = myconfig.version
     		self.app_name = myconfig.app_name
 
-    def clone_repo(self, repo):
-    	Repo.clone_from(repo, '.')
+    def clone_repo(self, repo, app_name):
+    	Repo.clone_from(repo, app_name)
 
     def build_docker(self):
     	call(['cd',self.app_name])
@@ -34,7 +34,7 @@ def main():
     parser = get_parser()
     args = parser.parse_args()
     deploy = Deployer()
-    deploy.clone_repo(args.repo)
+    deploy.clone_repo(args.repo, args.name)
     deploy.read_info(args.name)
     deploy.build_docker()
 

@@ -8,6 +8,10 @@ from subprocess import call
 
 class Deployer(object):
 
+	def __init__(object):
+		self.app_name = None
+		self.app_version = None
+		
     def read_info(self, app_name):
     	with open(app_name+'/package.json') as data:
     		myconfig = json.load(data)

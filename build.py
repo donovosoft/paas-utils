@@ -26,12 +26,11 @@ class Deployer(object):
     	client = docker.from_env()
     	dockerfile = self.app_name+'/'
     	tag = 'donovosoft/'+self.app_name
-    	image = client.images.build(path=dockerfile, stream=True)
+    	image = client.images.build(path=dockerfile, stream=False)
     	image.tag(tag, self.app_version)
     	client.login(username=user, password=passw)
-    	for line in client.images.push('docker.io/'+tag, self.app_version, stream=True):
-    		print line
-    	print "OK"
+    	client.images.push('docker.io/'+tag, self.app_version, stream=False)
+    	print "Build OK"
 
 def get_parser():
     parser = argparse.ArgumentParser(description='doNovosoft PAAS build')

@@ -29,7 +29,8 @@ class Deployer(object):
     	image = client.images.build(path=dockerfile, stream=False)
     	image.tag(tag, self.app_version)
     	client.login(username=user, password=passw)
-    	client.images.push('docker.io/'+tag, self.app_version, stream=False)
+    	for line in client.images.push('docker.io/'+tag, self.app_version, stream=True):
+    		print line
     	print "Build OK"
 
 def get_parser():
